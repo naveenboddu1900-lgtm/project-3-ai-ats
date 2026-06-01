@@ -1,0 +1,33 @@
+{
+  "name": "project-3-ai-ats",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "description": "AI-powered applicant tracking system with recruiter and candidate portals.",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "client:dev": "npm --prefix client run dev",
+    "server:dev": "npm --prefix server run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "lint": "npm --prefix client run lint && npm --prefix server run lint",
+    "test": "npm --prefix server test"
+  },
+  "keywords": [
+    "applicant-tracking-system",
+    "recruiting",
+    "react",
+    "express",
+    "mongodb",
+    "ai-matching"
+  ],
+  "author": "NAVEE Stores",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
