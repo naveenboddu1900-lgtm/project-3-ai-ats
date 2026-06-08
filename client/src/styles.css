@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+}
+
+.topbar {
+  border-bottom: 1px solid #e3e8f2;
+}
+
+.brand-mark,
+.hero-icon {
+  align-items: center;
+  background: #2454c6;
+  border-radius: 8px;
+  color: #fff;
+  display: inline-flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.nav-button.active {
+  background: #eaf0ff;
+}
+
+.login-screen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  min-height: 100vh;
+}
+
+.login-hero {
+  align-items: center;
+  background:
+    linear-gradient(120deg, rgba(18, 26, 46, 0.82), rgba(20, 83, 74, 0.74)),
+    url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1800&q=80');
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  padding: 7vw;
+}
+
+.login-card {
+  align-self: center;
+  margin: 32px;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.pipeline-grid {
+  align-items: stretch;
+}
+
+.pipeline-column {
+  background: #eef3fb;
+  border: 1px solid #dde6f3;
+  border-radius: 8px;
+  min-height: 620px;
+  padding: 16px;
+}
+
+@media (max-width: 900px) {
+  .login-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .login-hero {
+    min-height: 38vh;
+  }
+}
