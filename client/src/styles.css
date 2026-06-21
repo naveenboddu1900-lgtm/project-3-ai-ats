@@ -52,6 +52,20 @@ body {
   overflow: hidden;
 }
 
+.interactive-card {
+  cursor: pointer;
+  height: 100%;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.interactive-card:focus-visible,
+.interactive-card:hover {
+  box-shadow: 0 16px 36px rgba(32, 36, 45, 0.14);
+  outline: 2px solid #c05a1f;
+  outline-offset: 2px;
+  transform: translateY(-2px);
+}
+
 .pipeline-grid {
   align-items: stretch;
 }

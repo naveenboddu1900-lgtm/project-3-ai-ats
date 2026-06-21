@@ -6,6 +6,9 @@ import {
   Card,
   CardContent,
   Chip,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   Grid2,
   LinearProgress,
   Stack,
@@ -27,6 +30,7 @@ const initialJob = {
 export default function RecruiterDashboard() {
   const queryClient = useQueryClient();
   const [job, setJob] = useState(initialJob);
+  const [selectedJob, setSelectedJob] = useState(null);
   const { data, isLoading } = useQuery({
     queryKey: ['jobs'],
     queryFn: async () => (await api.get('/jobs')).data
@@ -100,13 +104,24 @@ export default function RecruiterDashboard() {
           <Grid2 container spacing={2}>
             {jobs.map((item) => (
               <Grid2 key={item.id} size={{ xs: 12, lg: 6 }}>
-                <Card>
+                <Card
+                  className="interactive-card"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setSelectedJob(item)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      setSelectedJob(item);
+                    }
+                  }}
+                >
                   <CardContent>
                     <Stack spacing={1.5}>
                       <Stack direction="row" justifyContent="space-between" alignItems="flex-start" gap={2}>
                         <Box>
                           <Typography variant="h6">{item.title}</Typography>
-                          <Typography color="text.secondary">{item.department} · {item.location}</Typography>
+                          <Typography color="text.secondary">{item.department} - {item.location}</Typography>
                         </Box>
                         <Chip size="small" label={item.status} color={item.status === 'open' ? 'success' : 'default'} />
                       </Stack>
@@ -126,6 +141,43 @@ export default function RecruiterDashboard() {
           </Grid2>
         </Grid2>
       </Grid2>
+
+      <Dialog open={Boolean(selectedJob)} onClose={() => setSelectedJob(null)} maxWidth="md" fullWidth>
+        {selectedJob && (
+          <>
+            <DialogTitle>
+              <Stack spacing={0.75}>
+                <Typography variant="h5">{selectedJob.title}</Typography>
+                <Typography color="text.secondary">
+                  {selectedJob.department} - {selectedJob.location} - {selectedJob.type}
+                </Typography>
+              </Stack>
+            </DialogTitle>
+            <DialogContent>
+              <Stack spacing={2.5} sx={{ pb: 1 }}>
+                <Stack direction="row" flexWrap="wrap" gap={1}>
+                  <Chip label={selectedJob.status} color={selectedJob.status === 'open' ? 'success' : 'default'} />
+                  <Chip label={`${selectedJob.applicationCount} applicants`} />
+                  <Chip label={`Average score ${selectedJob.averageScore}%`} color="primary" />
+                </Stack>
+                <Box>
+                  <Typography variant="overline" color="text.secondary">Job description</Typography>
+                  <Typography>{selectedJob.description}</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="overline" color="text.secondary">Required skills</Typography>
+                  <Stack direction="row" flexWrap="wrap" gap={1} mt={0.5}>
+                    {selectedJob.skills.map((skill) => <Chip key={skill} label={skill} size="small" />)}
+                  </Stack>
+                </Box>
+                <Stack direction="row" justifyContent="flex-end">
+                  <Button variant="contained" onClick={() => setSelectedJob(null)}>Close</Button>
+                </Stack>
+              </Stack>
+            </DialogContent>
+          </>
+        )}
+      </Dialog>
     </Stack>
   );
 }
