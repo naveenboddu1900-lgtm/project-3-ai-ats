@@ -5,6 +5,25 @@ import { api } from '../services/api.js';
 
 const stages = ['Applied', 'Screening', 'Interview', 'Offered'];
 
+const stageImages = {
+  Applied: {
+    src: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80',
+    alt: 'Applicant resume review workspace'
+  },
+  Screening: {
+    src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80',
+    alt: 'Recruiter screening candidate profiles'
+  },
+  Interview: {
+    src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=600&q=80',
+    alt: 'Interview conversation with hiring team'
+  },
+  Offered: {
+    src: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
+    alt: 'Successful hiring agreement'
+  }
+};
+
 export default function PipelinePage() {
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
@@ -34,6 +53,9 @@ export default function PipelinePage() {
         {stages.map((stage) => (
           <Grid2 key={stage} size={{ xs: 12, md: 3 }}>
             <Box className="pipeline-column">
+              <Box className="pipeline-stage-image">
+                <img src={stageImages[stage].src} alt={stageImages[stage].alt} />
+              </Box>
               <Typography variant="h6">{stage}</Typography>
               <Stack spacing={1.5}>
                 {(grouped[stage] || []).map((application) => {

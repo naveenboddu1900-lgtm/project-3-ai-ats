@@ -78,6 +78,21 @@ body {
   padding: 16px;
 }
 
+.pipeline-stage-image {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.pipeline-stage-image img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
 @media (max-width: 900px) {
   .login-screen {
     grid-template-columns: 1fr;
