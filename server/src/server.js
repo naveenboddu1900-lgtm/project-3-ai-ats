@@ -8,6 +8,33 @@ await seedDemoData();
 
 const app = createApp();
 
-app.listen(config.port, () => {
+const server = app.listen(config.port, () => {
   console.log(`ATS API listening on http://localhost:${config.port}`);
 });
+
+server.on('error', async (error) => {
+  if (error.code !== 'EADDRINUSE') {
+    throw error;
+  }
+
+  const existingService = await getExistingService();
+  if (existingService === 'project-3-ats') {
+    console.log(`ATS API already running on http://localhost:${config.port}. Reusing existing server.`);
+    setInterval(() => {}, 60_000);
+    return;
+  }
+
+  console.error(`Port ${config.port} is already in use by another service.`);
+  process.exit(1);
+});
+
+async function getExistingService() {
+  try {
+    const response = await fetch(`http://localhost:${config.port}/api/health`);
+    if (!response.ok) return '';
+    const data = await response.json();
+    return data.service || '';
+  } catch {
+    return '';
+  }
+}

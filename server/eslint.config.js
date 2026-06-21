@@ -10,7 +10,9 @@ export default [
       globals: {
         Buffer: 'readonly',
         console: 'readonly',
-        process: 'readonly'
+        fetch: 'readonly',
+        process: 'readonly',
+        setInterval: 'readonly'
       }
     },
     rules: {
