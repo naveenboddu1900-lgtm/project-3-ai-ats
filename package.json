@@ -25,7 +25,7 @@
     "mongodb",
     "ai-matching"
   ],
-  "author": "NAVEE Stores",
+  "author": "AS SWAP",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^9.1.2"

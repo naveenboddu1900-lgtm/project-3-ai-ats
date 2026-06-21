@@ -4,19 +4,19 @@ import { createUser, findUserByEmail } from '../repositories/users.js';
 import { memoryStore } from '../store/memoryStore.js';
 
 export async function seedDemoData() {
-  const existingRecruiter = await findUserByEmail('recruiter@zaalima.dev');
+  const existingRecruiter = await findUserByEmail('recruiter@asswap.dev');
   if (existingRecruiter) return;
 
   const recruiter = await createUser({
-    name: 'Zaalima Recruiter',
-    email: 'recruiter@zaalima.dev',
+    name: 'AS SWAP Recruiter',
+    email: 'recruiter@asswap.dev',
     password: 'Password@123',
     role: 'recruiter'
   });
 
   const candidate = await createUser({
     name: 'Naveen Candidate',
-    email: 'candidate@zaalima.dev',
+    email: 'candidate@asswap.dev',
     password: 'Password@123',
     role: 'candidate'
   });

@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  const [email, setEmail] = useState('recruiter@zaalima.dev');
+  const [email, setEmail] = useState('recruiter@asswap.dev');
   const [password, setPassword] = useState('Password@123');
   const [error, setError] = useState('');
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
       <Box className="login-hero">
         <Stack spacing={2} maxWidth={620}>
           <Box className="hero-icon"><Sparkles size={28} /></Box>
-          <Typography variant="h3" component="h1">AI-Powered Applicant Tracking System</Typography>
+          <Typography variant="h3" component="h1">AS SWAP .ATS</Typography>
           <Typography color="rgba(255,255,255,.82)" fontSize={18}>
             Manage hiring from job posting to offer with ranked candidates, parsed resumes, and interview-ready workflows.
           </Typography>
@@ -51,7 +51,7 @@ export default function LoginPage() {
             />
             <Button type="submit" variant="contained" size="large" startIcon={<LockKeyhole size={18} />}>Sign in</Button>
             <Stack spacing={0.5}>
-              <Typography variant="body2" color="text.secondary">Candidate: candidate@zaalima.dev</Typography>
+              <Typography variant="body2" color="text.secondary">Candidate: candidate@asswap.dev</Typography>
               <Typography variant="body2" color="text.secondary">Password: Password@123</Typography>
             </Stack>
           </Stack>

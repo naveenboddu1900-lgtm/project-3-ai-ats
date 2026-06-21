@@ -1,4 +1,4 @@
-# Project 3: AI-Powered Applicant Tracking System
+# AS SWAP .ATS
 
 An intelligent HR platform for managing job openings, candidate applications, resume uploads, AI-assisted skill extraction, ranked applicant shortlists, interview pipelines, and recruiter communication.
 
@@ -18,12 +18,12 @@ cp server/.env.example server/.env
 npm run dev
 ```
 
-The frontend runs on `http://localhost:5173` and the backend on `http://localhost:5000`.
+The frontend runs on `http://localhost:5173` and the backend on `http://localhost:58421`.
 
 ## Demo Credentials
 
-- Recruiter: `recruiter@zaalima.dev` / `Password@123`
-- Candidate: `candidate@zaalima.dev` / `Password@123`
+- Recruiter: `recruiter@asswap.dev` / `Password@123`
+- Candidate: `candidate@asswap.dev` / `Password@123`
 
 ## Project Timeline
 

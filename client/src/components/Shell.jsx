@@ -21,8 +21,8 @@ export default function Shell() {
           <Stack direction="row" alignItems="center" spacing={1.25} flexGrow={1}>
             <Box className="brand-mark"><Sparkles size={20} /></Box>
             <Box>
-              <Typography variant="h6" lineHeight={1}>Zaalima ATS</Typography>
-              <Typography variant="caption" color="text.secondary">Project 3 recruitment platform</Typography>
+              <Typography variant="h6" lineHeight={1}>AS SWAP .ATS</Typography>
+              <Typography variant="caption" color="text.secondary">Recruitment intelligence platform</Typography>
             </Box>
           </Stack>
           <Stack direction="row" alignItems="center" spacing={1}>

@@ -3,13 +3,13 @@ body {
 }
 
 .topbar {
-  border-bottom: 1px solid #e3e8f2;
+  border-bottom: 1px solid #e9dfd2;
 }
 
 .brand-mark,
 .hero-icon {
   align-items: center;
-  background: #2454c6;
+  background: #20242d;
   border-radius: 8px;
   color: #fff;
   display: inline-flex;
@@ -19,7 +19,7 @@ body {
 }
 
 .nav-button.active {
-  background: #eaf0ff;
+  background: #f0e4d6;
 }
 
 .login-screen {
@@ -31,7 +31,7 @@ body {
 .login-hero {
   align-items: center;
   background:
-    linear-gradient(120deg, rgba(18, 26, 46, 0.82), rgba(20, 83, 74, 0.74)),
+    linear-gradient(120deg, rgba(32, 36, 45, 0.84), rgba(192, 90, 31, 0.68)),
     url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1800&q=80');
   background-position: center;
   background-size: cover;
@@ -57,8 +57,8 @@ body {
 }
 
 .pipeline-column {
-  background: #eef3fb;
-  border: 1px solid #dde6f3;
+  background: #f4ece2;
+  border: 1px solid #e3d4c3;
   border-radius: 8px;
   min-height: 620px;
   padding: 16px;
