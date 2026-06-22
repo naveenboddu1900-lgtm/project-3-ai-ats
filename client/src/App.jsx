@@ -31,9 +31,11 @@ function RoleHome() {
 }
 
 export default function App() {
+  const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '');
+
   return (
     <AuthProvider>
-      <Router>
+      <Router basename={basename}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route

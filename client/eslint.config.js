@@ -15,7 +15,8 @@ export default [
         document: 'readonly',
         localStorage: 'readonly',
         FormData: 'readonly',
-        File: 'readonly'
+        File: 'readonly',
+        URL: 'readonly'
       },
       parserOptions: {
         ecmaFeatures: { jsx: true }
@@ -35,6 +36,14 @@ export default [
     },
     settings: {
       react: { version: 'detect' }
+    }
+  },
+  {
+    files: ['vite.config.js'],
+    languageOptions: {
+      globals: {
+        process: 'readonly'
+      }
     }
   }
 ];
