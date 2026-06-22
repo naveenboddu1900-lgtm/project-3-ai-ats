@@ -21,6 +21,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../services/api.js';
 
+function publicAppLink(path) {
+  const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+  if (import.meta.env.VITE_STATIC_DEMO === 'true') {
+    return `${window.location.origin}${base}/#${path}`;
+  }
+  return `${window.location.origin}${base}${path}`;
+}
+
 export default function CandidatePortal() {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
@@ -118,7 +126,7 @@ export default function CandidatePortal() {
               <Typography variant="h6" gutterBottom>Open demo jobs</Typography>
               <Grid2 container spacing={2}>
                 {jobs.map((job) => {
-                  const jobLink = `${window.location.origin}${applyLink(job.id)}`;
+                  const jobLink = publicAppLink(applyLink(job.id));
                   return (
                     <Grid2 key={job.id} size={{ xs: 12, lg: 6 }}>
                       <Card className="job-card">
@@ -199,7 +207,7 @@ export default function CandidatePortal() {
                   {openJob.skills.map((skill) => <Chip key={skill} label={skill} size="small" />)}
                 </Stack>
                 <Typography variant="body2" className="job-link">
-                  {`${window.location.origin}${applyLink(openJob.id)}`}
+                  {publicAppLink(applyLink(openJob.id))}
                 </Typography>
                 <Stack direction="row" justifyContent="flex-end" gap={1}>
                   <Button variant="outlined" onClick={() => setOpenJob(null)}>Close</Button>

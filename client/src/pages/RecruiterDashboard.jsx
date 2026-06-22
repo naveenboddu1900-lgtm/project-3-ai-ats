@@ -27,6 +27,14 @@ const initialJob = {
   skills: ''
 };
 
+function publicAppLink(path) {
+  const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+  if (import.meta.env.VITE_STATIC_DEMO === 'true') {
+    return `${window.location.origin}${base}/#${path}`;
+  }
+  return `${window.location.origin}${base}${path}`;
+}
+
 export default function RecruiterDashboard() {
   const queryClient = useQueryClient();
   const [job, setJob] = useState(initialJob);
@@ -47,7 +55,7 @@ export default function RecruiterDashboard() {
   const jobs = data?.jobs || [];
 
   function candidateApplyLink(jobId) {
-    return `${window.location.origin}/apply/${jobId}`;
+    return publicAppLink(`/apply/${jobId}`);
   }
 
   function update(field, value) {

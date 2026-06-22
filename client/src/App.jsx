@@ -1,4 +1,4 @@
-import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, BrowserRouter, HashRouter, Routes, useLocation } from 'react-router-dom';
 import Shell from './components/Shell.jsx';
 import { AuthProvider, useAuth } from './context/AuthContext.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -32,6 +32,7 @@ function RoleHome() {
 
 export default function App() {
   const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '');
+  const Router = import.meta.env.VITE_STATIC_DEMO === 'true' ? HashRouter : BrowserRouter;
 
   return (
     <AuthProvider>
