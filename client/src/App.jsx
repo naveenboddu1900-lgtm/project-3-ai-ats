@@ -31,8 +31,9 @@ function RoleHome() {
 }
 
 export default function App() {
-  const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '');
-  const Router = import.meta.env.VITE_STATIC_DEMO === 'true' ? HashRouter : BrowserRouter;
+  const staticDemo = import.meta.env.VITE_STATIC_DEMO === 'true';
+  const basename = staticDemo || import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '');
+  const Router = staticDemo ? HashRouter : BrowserRouter;
 
   return (
     <AuthProvider>
