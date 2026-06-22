@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { LockKeyhole, Sparkles } from 'lucide-react';
 import { Alert, Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
 import { useAuth } from '../context/AuthContext.jsx';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { login } = useAuth();
   const [email, setEmail] = useState('recruiter@asswap.dev');
   const [password, setPassword] = useState('Password@123');
@@ -16,7 +17,9 @@ export default function LoginPage() {
     setError('');
     try {
       const user = await login({ email, password });
-      navigate(user.role === 'recruiter' ? '/recruiter' : '/candidate');
+      const redirect = searchParams.get('redirect');
+      const fallback = user.role === 'recruiter' ? '/recruiter' : '/candidate';
+      navigate(redirect?.startsWith('/') ? redirect : fallback);
     } catch (err) {
       setError(err.response?.data?.message || 'Unable to sign in.');
     }

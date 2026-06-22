@@ -2,12 +2,17 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { config } from './config.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { authRouter } from './routes/auth.js';
 import { jobsRouter } from './routes/jobs.js';
 import { applicationsRouter } from './routes/applications.js';
 import { candidateRouter } from './routes/candidate.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const clientDistPath = path.resolve(__dirname, '../../client/dist');
 
 export function createApp() {
   const app = express();
@@ -25,6 +30,14 @@ export function createApp() {
   app.use('/api/jobs', jobsRouter);
   app.use('/api/applications', applicationsRouter);
   app.use('/api/candidate', candidateRouter);
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(clientDistPath));
+    app.get('*', (_req, res) => {
+      res.sendFile(path.join(clientDistPath, 'index.html'));
+    });
+  }
+
   app.use(errorHandler);
 
   return app;

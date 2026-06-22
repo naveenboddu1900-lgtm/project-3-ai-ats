@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Plus, Save } from 'lucide-react';
+import { ExternalLink, Plus, Save } from 'lucide-react';
 import {
   Box,
   Button,
@@ -45,6 +45,10 @@ export default function RecruiterDashboard() {
   });
 
   const jobs = data?.jobs || [];
+
+  function candidateApplyLink(jobId) {
+    return `${window.location.origin}/apply/${jobId}`;
+  }
 
   function update(field, value) {
     setJob((current) => ({ ...current, [field]: value }));
@@ -170,7 +174,20 @@ export default function RecruiterDashboard() {
                     {selectedJob.skills.map((skill) => <Chip key={skill} label={skill} size="small" />)}
                   </Stack>
                 </Box>
-                <Stack direction="row" justifyContent="flex-end">
+                <Box>
+                  <Typography variant="overline" color="text.secondary">Candidate apply link</Typography>
+                  <Typography variant="body2" className="job-link">
+                    {candidateApplyLink(selectedJob.id)}
+                  </Typography>
+                </Box>
+                <Stack direction="row" justifyContent="flex-end" gap={1} flexWrap="wrap">
+                  <Button
+                    variant="outlined"
+                    startIcon={<ExternalLink size={16} />}
+                    onClick={() => window.open(candidateApplyLink(selectedJob.id), '_blank', 'noopener,noreferrer')}
+                  >
+                    Open apply page
+                  </Button>
                   <Button variant="contained" onClick={() => setSelectedJob(null)}>Close</Button>
                 </Stack>
               </Stack>

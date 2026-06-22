@@ -66,6 +66,19 @@ body {
   transform: translateY(-2px);
 }
 
+.job-card {
+  height: 100%;
+}
+
+.job-link {
+  background: #f6efe7;
+  border: 1px solid #e3d4c3;
+  border-radius: 8px;
+  color: #2454c6;
+  overflow-wrap: anywhere;
+  padding: 8px 10px;
+}
+
 .pipeline-grid {
   align-items: stretch;
 }
